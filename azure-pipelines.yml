@@ -21,8 +21,7 @@ steps:
 - script: |
       npm audit fix --force
       npm install
-      
-  displayName: NPM build
+  displayName: "npm install"
 # npm run build --if-present
       # npm run test --if-present
 
@@ -46,7 +45,7 @@ steps:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     publishLocation: 'pipeline'
   displayName: 'Publish npm artifact'
-  
+
 # - task: PublishPipelineArtifact@1
 #   inputs:
 #     targetPath: '$(Pipeline.Workspace)'
