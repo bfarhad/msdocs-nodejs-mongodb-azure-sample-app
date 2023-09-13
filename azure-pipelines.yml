@@ -35,23 +35,23 @@ steps:
     ls -la
   displayName: 'npm build'
 
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(Pipeline.Workspace)'
-    contents: |
-       $(Pipeline.Workspace)/*
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Copy project files'
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    artifactName: node-app
-    targetPath: '$(Build.ArtifactStagingDirectory)'
-    publishLocation: 'pipeline'
-  displayName: 'Publish npm artifact'
+# - task: CopyFiles@2
+#   inputs:
+#     sourceFolder: '$(Pipeline.Workspace)'
+#     contents: |
+#        $(Pipeline.Workspace)/*
+#     targetFolder: '$(Build.ArtifactStagingDirectory)'
+#   displayName: 'Copy project files'
 
 # - task: PublishPipelineArtifact@1
 #   inputs:
-#     targetPath: '$(Pipeline.Workspace)'
-#     artifact: 'node-app'
+#     artifactName: node-app
+#     targetPath: '$(Build.ArtifactStagingDirectory)'
 #     publishLocation: 'pipeline'
+#   displayName: 'Publish npm artifact'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'node-app'
+    publishLocation: 'pipeline'
