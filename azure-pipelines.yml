@@ -19,6 +19,7 @@ steps:
     versionSpec: '16.x'
     
 - script: |
+      npm audit fix --force
       npm install
       npm run build --if-present
       npm run test --if-present
