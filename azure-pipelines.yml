@@ -21,12 +21,34 @@ steps:
 - script: |
       npm audit fix --force
       npm install
-      npm run build --if-present
-      npm run test --if-present
+      
   displayName: NPM build
+# npm run build --if-present
+      # npm run test --if-present
+
+- script: |
+    npm run build
+    npm run test
+  displayName: 'npm build'
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: |
+       src/*
+       public/*
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Copy project files'
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: 'node-app'
+    artifactName: node-app
+    targetPath: '$(Build.ArtifactStagingDirectory)'
     publishLocation: 'pipeline'
+  displayName: 'Publish npm artifact'
+  
+# - task: PublishPipelineArtifact@1
+#   inputs:
+#     targetPath: '$(Pipeline.Workspace)'
+#     artifact: 'node-app'
+#     publishLocation: 'pipeline'
