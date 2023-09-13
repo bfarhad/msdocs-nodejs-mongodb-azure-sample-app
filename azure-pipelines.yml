@@ -2,9 +2,12 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-
+name: $(BuildDefinitionName)_$(date:yyyyMMdd)$(rev:.r)
+ 
 trigger:
 - main
+ 
+pr: none
 
 pool:
   vmImage: ubuntu-latest
@@ -34,7 +37,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
+    sourceFolder: '$(Pipeline.Workspace)'
     contents: |
        src/*
        public/*
