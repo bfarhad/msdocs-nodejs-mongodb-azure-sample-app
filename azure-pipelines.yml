@@ -21,13 +21,15 @@ steps:
 - script: |
       npm audit fix --force
       npm install
+      ls -la
   displayName: "npm install"
 # npm run build --if-present
       # npm run test --if-present
 
 - script: |
-    npm run build
-    npm run test
+    npm run build --if-present
+    npm run test --if-present
+    ls -la
   displayName: 'npm build'
 
 - task: CopyFiles@2
