@@ -11,12 +11,22 @@ pool:
 
 
 steps:
-- checkout: itself
+- checkout: self
 
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
+- task: NodeTool@0
+  inputs:
+    versionSource: 'spec'
+    versionSpec: '16.x'
+    
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+      npm install
+      npm run build --if-present
+      npm run test --if-present
+  displayName: NPM build
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'node-app'
+    publishLocation: 'pipeline'
+    properties: '.'
