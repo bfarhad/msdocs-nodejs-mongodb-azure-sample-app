@@ -39,8 +39,7 @@ steps:
   inputs:
     sourceFolder: '$(Pipeline.Workspace)'
     contents: |
-       src/*
-       public/*
+       .
     targetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Copy project files'
 
