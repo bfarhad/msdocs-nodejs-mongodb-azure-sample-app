@@ -29,4 +29,3 @@ steps:
     targetPath: '$(Pipeline.Workspace)'
     artifact: 'node-app'
     publishLocation: 'pipeline'
-    properties: '.'
